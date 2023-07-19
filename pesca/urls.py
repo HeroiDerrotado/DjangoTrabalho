@@ -17,6 +17,8 @@ Including another URLconf
 from django.urls import path
 from . import views
 
+app_name = "pescaria"
+
 urlpatterns = [
-    path('pesca/',views.pesca_views),
+    path('pesca/',views.pesca_views,name = "pescariapagina"),
 ]
