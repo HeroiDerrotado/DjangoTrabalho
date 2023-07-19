@@ -1,0 +1,18 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+{% include 'pesca/parciais/pesca_head.html' %}
+
+<body>
+
+    <div>
+        <form action="{% url 'galeria:busca' %}"></form>
+        <input type="text" name="buscando" placeholder="Qual peixe você quer desbravar?">
+        <button type="submit">buscar</button>
+    </div>
+
+</body>
+
+</html>

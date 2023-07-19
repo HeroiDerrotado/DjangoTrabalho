@@ -16,9 +16,11 @@ Including another URLconf
 """
 from django.urls import path
 from . import views
+from views import views_busca
 
 app_name = "pescaria"
 
 urlpatterns = [
     path('pesca/',views.pesca_views,name = "pescariapagina"),
+    path('busca/',views_busca,name = "busca"),
 ]
