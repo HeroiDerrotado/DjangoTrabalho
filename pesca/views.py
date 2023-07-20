@@ -1,5 +1,5 @@
 from django.shortcuts import render
-# from foto.models import Imagem
+from pesca.models import Imagem
 
 # Create your views here.
 
