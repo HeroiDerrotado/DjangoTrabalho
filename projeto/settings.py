@@ -39,8 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     #meus app
     'especies',
-    'pesca',
     'vidamarinha',
+    'pesca.apps.PescaConfig',
 ]
 
 MIDDLEWARE = [
