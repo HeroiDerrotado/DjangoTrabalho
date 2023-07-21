@@ -22,5 +22,6 @@ app_name = "peixes"
 
 
 urlpatterns = [
-    path('especies/',views.especies_views,name = "especiespagina"),
+    path('diversas/',views.especies_views,name = "especiespagina"),
+    path('oceano/',views.busca_views,name="buscapagina"),
 ]

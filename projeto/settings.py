@@ -38,9 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     #meus app
-    'especies',
-    'vidamarinha',
+    'vidamarinha.apps.VidamarinhaConfig',
     'pesca.apps.PescaConfig',
+    'especies.apps.EspeciesConfig',
 ]
 
 MIDDLEWARE = [
@@ -58,7 +58,9 @@ ROOT_URLCONF = 'projeto.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
