@@ -3,16 +3,14 @@
 <!DOCTYPE html>
 <html lang="en">
 
-{% include 'pesca/parciais/pesca_head.html' %}
+{% include 'especies/parciais/especies_head.html' %}
 
 <body>
-
     <div>
-        <form action="{% url 'pescaria:busca' %}"></form>
+        <form action="{% url 'peixes:buscapagina' %}"></form>
         <input type="text" name="buscando" placeholder="Qual peixe você quer desbravar?">
         <button type="submit">buscar</button>
     </div>
-
 </body>
 
 </html>

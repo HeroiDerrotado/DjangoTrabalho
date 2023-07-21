@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from models import Imagem
+from pesca.models import Imagem
 
 # Create your views here.
 
@@ -16,4 +16,4 @@ def views_busca(request):
         if nome:
             imagens = imagens.filter(nome__icontains=nome)
 
-    return render(request, 'galeria/paginas/busca.html', context ={'imagens' : imagens})
+    return render(request, 'pesca/paginas/busca.html', context ={'imagens' : imagens})
