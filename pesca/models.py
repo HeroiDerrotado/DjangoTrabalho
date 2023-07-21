@@ -9,6 +9,7 @@ class Imagem(models.Model):
         ('MARINHO','marinho'),
         ('MAR','mar'),
     ]
+    
     nome = models.CharField(max_length=100,null = False, blank = False )
     legenda = models.CharField(max_length=100,null =False,blank=False)
     categoria = models.CharField(max_length=100, choices= OPCOES_CATAEGORIA, default= "")

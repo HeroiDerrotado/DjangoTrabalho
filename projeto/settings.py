@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'vidamarinha.apps.VidamarinhaConfig',
     'pesca.apps.PescaConfig',
     'especies.apps.EspeciesConfig',
+    'usuario.apps.UsuarioConfig',
 ]
 
 MIDDLEWARE = [
