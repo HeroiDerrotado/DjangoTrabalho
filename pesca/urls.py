@@ -22,5 +22,5 @@ app_name = "pescaria"
 
 urlpatterns = [
     path('pesca/',views.pesca_views,name = "pescariapagina"),
-    path('busca/',views.views_busca,name = "busca"),
+    path('busca/',views.views_busca),
 ]

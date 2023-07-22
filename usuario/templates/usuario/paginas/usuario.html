@@ -3,12 +3,22 @@
 <h1>pagina login</h1>
 
 <section>
-    <form action="" method="">
+    <form action="{% url 'usuario:loginpagina' %}" method="POST">
+         {% csrf_token %} 
+         {% for campo in formulario.visible_fields %}
         <div>
-
-
-
+            <label for="nome_login"><b>nome login</b></label> 
+            <input type="text" name="nome_login" placeholder="Digite seu login" required>
+        </div>
+        <div>
+            <label for='{{ campo.id_for_label }}'><b>{{ campo.label }}</b></label>
+            {{ campo }}
+            <input type="text" naem="senha" placeholder="Digite sua senha" required>
+        </div>
+        {% endfor %}
+        <div>
+        <button type="Submit">Login</button>
         </div>
     </form>
 </section>
-{% endblock conteudo}
+{% endblock conteudo %}
