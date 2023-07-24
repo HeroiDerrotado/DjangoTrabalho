@@ -2,7 +2,7 @@ from django.db import models
 from datetime import datetime
 # Create your models here.
 
-class Imagem(models.Model):
+class EspecieGeral(models.Model):
     OPCOES_CATEGORIA = [
         ('MARINHO','marinho'),
         ('TERRA','terra')

@@ -7,24 +7,25 @@ from django.contrib import auth
 # Create your views here.
 
 def login_views(request):
-    formulario= LoginForms
+    formulario= LoginForms()
 
-    if formulario.is_valid():
+    if request.method == 'POST':
+        if formulario.is_valid():
 
-        nome=formulario['nome_login'].value()
-        senha=formulario['senha'].value()
+            nome=formulario['nome_login'].value()
+            senha=formulario['senha'].value()
 
-        usuario = auth.authenticate(
-            request,
-            usename= nome,
-            password = senha
-        )
+            usuario = auth.authenticate(
+                request,
+                usename= nome,
+                password = senha
+            )
 
-        if usuario is not None:
-            auth.login(request,usuario)
-            return redirect('cadastro:index')
-        else:
-            return redirect('usuario:login')
+            if usuario is not None:
+                auth.login(request,usuario)
+                return redirect('cadastro:index')
+            else:
+                return redirect('usuario:login')
 
 
     return render(request,"usuario/paginas/usuario.html",context={'formulario':formulario})

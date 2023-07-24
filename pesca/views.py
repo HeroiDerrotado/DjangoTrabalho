@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from pesca.models import Imagem
+from pesca.models import Pesca
 
 # Create your views here.
 
@@ -8,7 +8,7 @@ def pesca_views(request):
 
 def views_busca(request):
 
-    imagens = Imagem.objects.all()
+    imagens = Pesca.objects.all()
     print(request)
 
     if 'buscando' in request.GET:

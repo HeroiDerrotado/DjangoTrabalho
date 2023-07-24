@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from vidamarinha.models import Imagem
+from vidamarinha.models import Curiosidade
 
 # Create your views here.
 
@@ -8,7 +8,7 @@ def vidamarinha_views(request):
 
 def busca_views(request):
 
-    imagens = Imagem.objects.all()
+    imagens = Curiosidade.objects.all()
     print(request)
     nome = request.GET['buscando']
     if nome:

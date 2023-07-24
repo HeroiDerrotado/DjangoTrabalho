@@ -1,9 +1,9 @@
 from django.contrib import admin
-from vidamarinha.models import Imagem
+from vidamarinha.models import Curiosidade
 
 # Register your models here.
 
-class VidamarinhaAdmin(admin.ModelAdmin):
+class CuriosidadeAdmin(admin.ModelAdmin):
     list_display = ('id','nome','legenda','publicada')
     list_display_links= ('id','nome')
     search_fields= ('nome',)
@@ -11,4 +11,4 @@ class VidamarinhaAdmin(admin.ModelAdmin):
     list_editable =('publicada',)
     list_per_page = 10
 
-admin.site.register(Imagem,VidamarinhaAdmin)    
+admin.site.register(Curiosidade,CuriosidadeAdmin)    

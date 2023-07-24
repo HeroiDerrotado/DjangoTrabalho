@@ -9,13 +9,8 @@
         <!-- {% csrf_token %} -->
         {% for campo in formulario.visible_fields %}
         <div>
-            <label for="nome_login"><b>Nome login</b></label>
-            <input type="text" name="nome_login" placeholder="Digite seu login" required>
-        </div>
-        <div>
             <label for='{{ campo.id_for_label }}'><b>{{ campo.label }}</b></label>
             {{ campo }}
-            <input type="text" name="senha" placeholder="Digite sua senha" required>
         </div>
 
         {% for mensagem in messages %}

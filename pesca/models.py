@@ -3,7 +3,7 @@ from datetime import datetime
 
 # Create your models here.
 
-class Imagem(models.Model):
+class Pesca(models.Model):
 
     OPCOES_CATAEGORIA = [
         ('MARINHO','marinho'),
