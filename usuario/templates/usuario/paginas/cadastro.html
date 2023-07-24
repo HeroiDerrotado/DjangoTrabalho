@@ -3,7 +3,8 @@
 {% block conteudo %}
 <h1>Pagina de Login</h1>
 <section>
-    <form action="" method="">
+    <form action="{% url 'usuario:cadastro' %}" method="POST">
+        {% csrf_token %}
         <div>
             <label for="nome_cadastro">Nome Completo</label>
             <input type="text" name="nome_cadastro" placeholder="Digite seu nome" required>
@@ -16,6 +17,14 @@
             <label for="senha1">Senha</label>
             <input type="text" name="senha1" placeholder="Sua senha" required>
         </div>
+
+        {% for mensagem in messages %}
+        <div>
+            <p>{{ mensagem }}</p>
+        </div>
+        {% endfor %}
+
+
         <div>
             <label for="senha2">Confirmação de Senha </label>
             <input type="text" name="senha2" placeholder="Confirme Sua senha" required>

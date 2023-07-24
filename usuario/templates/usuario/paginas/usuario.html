@@ -17,6 +17,14 @@
             {{ campo }}
             <input type="text" name="senha" placeholder="Digite sua senha" required>
         </div>
+
+        {% for mensagem in messages %}
+        <div>
+            <p>{{ mensagem }}</p>
+        </div>
+        {% endfor %}
+
+
         {% endfor %}
         <div>
             <button type="Submit">Login</button>
