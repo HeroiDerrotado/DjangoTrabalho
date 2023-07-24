@@ -1,9 +1,11 @@
+{% load static %}
+
 {% block conteudo %}
 <h1>Pagina de Login</h1>
 <section>
     <form action="" method="">
         <div>
-            <label for="nome_cadastro" >Nome Completo</label>
+            <label for="nome_cadastro">Nome Completo</label>
             <input type="text" name="nome_cadastro" placeholder="Digite seu nome" required>
         </div>
         <div>
@@ -16,10 +18,13 @@
         </div>
         <div>
             <label for="senha2">Confirmação de Senha </label>
-            <input type="text" name="senha2" placeholder="Confirme sua senha" required>
+            <input type="text" name="senha2" placeholder="Confirme Sua senha" required>
         </div>
         <div>
             <button type="submit">Criar conta</button>
+        </div>
+        <div>
+            <a href="{% url 'menuzin:menupagina' %}">Menu</a>
         </div>
 
     </form>
