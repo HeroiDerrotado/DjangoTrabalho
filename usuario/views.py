@@ -42,6 +42,7 @@ def cadastro_views(request):
     
         if formulario.is_valid():
             if formulario['senha1'].value() == formulario['senha2'].value():
+                messages.error(request,'As senhas não são iguais!')
                 return redirect('usuario:cadastro')
     
             nome=formulario['nome_cadastro'].value()
