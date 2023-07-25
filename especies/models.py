@@ -1,5 +1,6 @@
 from django.db import models
 from datetime import datetime
+from django.contrib.auth.models import User
 # Create your models here.
 
 class EspecieGeral(models.Model):
@@ -15,6 +16,17 @@ class EspecieGeral(models.Model):
     foto=models.ImageField(upload_to='imagem/%Y/%m/%d/')
     publicada=models.BooleanField(default=False)
     data=models.DateTimeField(default=datetime.now,blank=False)
+
+    vidamarinha= models.ForeignKey(
+        to = User,
+        on_delete= models.SET_NULL,
+        null = True,
+        blank= False,
+        related_name = 'user'
+
+    )
     
     def __str__(self):
         return self.nome
+    
+

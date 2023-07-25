@@ -3,6 +3,8 @@ from usuario.form import LoginForms, CadastroForms
 from django.shortcuts import render,redirect
 from django.contrib.auth.models import User
 from django.contrib import auth
+from django.contrib import messages
+
 
 # Create your views here.
 
@@ -23,8 +25,10 @@ def login_views(request):
 
             if usuario is not None:
                 auth.login(request,usuario)
+                messages.success(request,f'usuario {nome} logado com sucesso!')
                 return redirect('cadastro:index')
             else:
+                messages.error(request,'Erro ao tentar logar!')
                 return redirect('usuario:login')
 
 
@@ -59,4 +63,8 @@ def cadastro_views(request):
             novo_usuario.save()
             return redirect('usuario:login')
     return render(request,"usuario/paginas/cadastro.html",context ={'formulario':formulario})
+
+def logout(request):
+    auth.logout(request)
+    return redirect('usuario:login')
 
