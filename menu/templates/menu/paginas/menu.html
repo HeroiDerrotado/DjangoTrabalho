@@ -1,0 +1,28 @@
+<div>
+    <ul>
+        <li>
+            <a href="{% url 'admin:index' %}">Admin</a>
+        </li>
+        <li>
+            <a href="{% url 'usuario:cadastropagina' %}">Cadastro</a>
+        </li>
+        <li>
+            <a href="{% url 'usuario:loginpagina' %}">Usuario</a>
+        </li>
+        <li>
+            <a href="{% url 'peixes:especiespagina' %}">Especies</a>
+        </li>
+        <li>
+            <a href="{% url 'pescaria:pescariapagina' %}">Pescaria</a>
+        </li>
+        <li>
+            <a href="{% url 'vidas:vidamarinhapagina' %}">Vida Marinha</a>
+        </li>
+        <li>
+            <div>
+                <a href="{% url 'usuario:logout' %}">Sair da pagina</a>
+            </div>
+        </li>
+
+    </ul>
+</div>

@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from especies.models import Imagem
+from especies.models import EspecieGeral
 
 # Create your views here.
 
@@ -8,7 +8,7 @@ def especies_views(request):
 
 def busca_views(request):
 
-    imagens = Imagem.objects.all()
+    imagens = EspecieGeral.objects.all()
     print(request)
 
     if 'buscando' in request.GET:

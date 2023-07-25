@@ -1,14 +1,16 @@
 from django.db import models
 from datetime import datetime
+from django.contrib.auth.models import User
 
 # Create your models here.
 
-class Imagem(models.Model):
+class Pesca(models.Model):
 
     OPCOES_CATAEGORIA = [
         ('MARINHO','marinho'),
         ('MAR','mar'),
     ]
+    
     nome = models.CharField(max_length=100,null = False, blank = False )
     legenda = models.CharField(max_length=100,null =False,blank=False)
     categoria = models.CharField(max_length=100, choices= OPCOES_CATAEGORIA, default= "")
@@ -17,6 +19,13 @@ class Imagem(models.Model):
     foto = models.ImageField(upload_to='imagem/%Y/%m/%d/',blank=True)
     publicada = models.BooleanField(default=False)
     data = models.DateTimeField(default=datetime.now, blank=False)
+    vidamarinha= models.ForeignKey(
+        to = User,
+        on_delete= models.SET_NULL,
+        null = True,
+        blank= False,
+        related_name = 'user'
+    )
 
 
     def __str__(self):

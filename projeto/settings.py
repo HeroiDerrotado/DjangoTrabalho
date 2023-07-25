@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'vidamarinha.apps.VidamarinhaConfig',
     'pesca.apps.PescaConfig',
     'especies.apps.EspeciesConfig',
+    'usuario.apps.UsuarioConfig',
+    'menu.apps.MenuConfig',
 ]
 
 MIDDLEWARE = [
@@ -60,6 +62,8 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             
+            BASE_DIR / 'meus_templates'
+   
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -109,7 +113,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'pt-BR'
 
 TIME_ZONE = 'UTC'
 

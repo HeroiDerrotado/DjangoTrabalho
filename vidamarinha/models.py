@@ -2,7 +2,7 @@ from django.db import models
 from datetime import datetime
 # Create your models here.
 
-class Imagem(models.Model):
+class Curiosidade(models.Model):
 
     nome=models.CharField(max_length=100,null=False,blank=False)
     legenda=models.CharField(max_length=100,null=False,blank=False)

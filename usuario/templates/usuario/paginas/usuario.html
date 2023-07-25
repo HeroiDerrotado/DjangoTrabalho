@@ -1,0 +1,55 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+{% include 'usuario/parciais/usuario_head.html' %}
+
+
+<body>
+
+    {% block conteudo %}
+
+    <h1>pagina login</h1>
+
+    <section>
+        <form action="{% url 'usuario:loginpagina' %}" method="POST">
+            <!-- {% csrf_token %} -->
+            {% for campo in formulario.visible_fields %}
+            <div>
+                <label for='{{ campo.id_for_label }}'><b>{{ campo.label }}</b></label>
+                {{ campo }}
+            </div>
+
+            {% for mensagem in messages %}
+            <div>
+                <p>{{ mensagem }}</p>
+            </div>
+            {% endfor %}
+
+
+            {% endfor %}
+            <div>
+                <button type="Submit">Login</button>
+            </div>
+
+            <div>
+                <a href="{% url 'usuario:cadastropagina' %}">Realizar Cadastro</a>
+            </div>
+
+            <div>
+                <a href="{% url 'usuario:logout' %}">Sair da pagina</a>
+            </div>
+
+            <div>
+                <a href="{% url 'menuzin:menupagina' %}">Menu</a>
+            </div>
+
+        </form>
+    </section>
+    {% endblock conteudo %}
+
+
+</body>
+
+</html>
