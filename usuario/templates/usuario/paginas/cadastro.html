@@ -3,7 +3,7 @@
 {% block conteudo %}
 <h1>Pagina de Login</h1>
 <section>
-    <form action="{% url 'usuario:cadastro' %}" method="POST">
+    <form action="{% url 'usuario:cadastropagina' %}" method="POST">
         {% csrf_token %}
         <div>
             <label for="nome_cadastro">Nome Completo</label>

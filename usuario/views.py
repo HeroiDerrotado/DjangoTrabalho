@@ -42,20 +42,21 @@ def cadastro_views(request):
     
             nome=formulario['nome_cadastro'].value()
             email=formulario['email_cadastro'].value()
-            senha=formulario['senha_1'].value()
-            senha= formulario['senha_2'].value()
+            senha1=formulario['senha_1'].value()
+            senha2= formulario['senha_2'].value()
 
-        if User.objects.filter(username=nome).exists():
-            return redirect('usuario:cadastro')
+            if User.objects.filter(username=nome,address=email,password1=senha1,password2=senha2).exists():
+                return redirect('usuario:cadastro')
 
-        novo_usuario = User.objects.create_user(
+            novo_usuario = User.objects.create_user(
 
-            username = nome,
-            email = email,
-            password = senha
-        )
+                username = nome,
+                email = email,
+                password1 = senha1,
+                password2 = senha2
+            )
 
-        novo_usuario.save()
-        return redirect('usuario:login')
+            novo_usuario.save()
+            return redirect('usuario:login')
     return render(request,"usuario/paginas/cadastro.html",context ={'formulario':formulario})
 
