@@ -127,8 +127,9 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+
 STATICFILES_DIRS = [
-    BASE_DIR / 'meus_statics',
+    BASE_DIR / 'meus_statics', 'especies/statics', 'pesca/statics', 'vidamarinha/statics'
 ]
 STATIC_ROOT = BASE_DIR / 'static'
 
