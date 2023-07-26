@@ -7,7 +7,7 @@
 
 
 
-    
+
 <body id="page-top">
 
     {% include 'pesca/paginas/busca.html' %}
@@ -15,7 +15,7 @@
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
         <div class="container">
-            <a class="navbar-brand" href="index.html">Projeto Peixe</a>
+            <a class="navbar-brand" href="{% url 'menuzin:menupagina' %}">Projeto Peixe</a>
             <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button"
                 data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive"
                 aria-expanded="false" aria-label="Toggle navigation">
@@ -324,7 +324,8 @@
                                     <div class="divider-custom-line"></div>
                                 </div>
                                 <!-- Portfolio Modal - Image-->
-                                <img class="img-fluid rounded mb-5" src="{% static 'pesca/img/aquario-01.jpg' %}" alt="..." />
+                                <img class="img-fluid rounded mb-5" src="{% static 'pesca/img/aquario-01.jpg' %}"
+                                    alt="..." />
                                 <!-- Portfolio Modal - Text-->
                                 <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque
                                     assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam
@@ -361,7 +362,8 @@
                                     <div class="divider-custom-line"></div>
                                 </div>
                                 <!-- Portfolio Modal - Image-->
-                                <img class="img-fluid rounded mb-5" src="{% static 'pesca/img/aquario-03.jpg' %}" alt="..." />
+                                <img class="img-fluid rounded mb-5" src="{% static 'pesca/img/aquario-03.jpg' %}"
+                                    alt="..." />
                                 <!-- Portfolio Modal - Text-->
                                 <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque
                                     assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam
@@ -398,7 +400,8 @@
                                     <div class="divider-custom-line"></div>
                                 </div>
                                 <!-- Portfolio Modal - Image-->
-                                <img class="img-fluid rounded mb-5" src="{% static 'pesca/img/aquario-04.jpg' %}" alt="..." />
+                                <img class="img-fluid rounded mb-5" src="{% static 'pesca/img/aquario-04.jpg' %}"
+                                    alt="..." />
                                 <!-- Portfolio Modal - Text-->
                                 <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque
                                     assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam
@@ -435,7 +438,8 @@
                                     <div class="divider-custom-line"></div>
                                 </div>
                                 <!-- Portfolio Modal - Image-->
-                                <img class="img-fluid rounded mb-5" src="{% static 'pesca/img/aquario-05.jpg' %}" alt="..." />
+                                <img class="img-fluid rounded mb-5" src="{% static 'pesca/img/aquario-05.jpg' %}"
+                                    alt="..." />
                                 <!-- Portfolio Modal - Text-->
                                 <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque
                                     assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam
@@ -472,7 +476,8 @@
                                     <div class="divider-custom-line"></div>
                                 </div>
                                 <!-- Portfolio Modal - Image-->
-                                <img class="img-fluid rounded mb-5" src="{% static 'pesca/img/aquario-07.jpg' %}" alt="..." />
+                                <img class="img-fluid rounded mb-5" src="{% static 'pesca/img/aquario-07.jpg' %}"
+                                    alt="..." />
                                 <!-- Portfolio Modal - Text-->
                                 <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque
                                     assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam
@@ -528,18 +533,18 @@
         </div>
     </div>
     <!-- Bootstrap core JS-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'pesca/js/pescajs.js' %}"></script>
     <!-- Core theme JS-->
     <script src="js/scripts.js"></script>
     <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
     <!-- * *                               SB Forms JS                               * *-->
     <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
     <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-    <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    <script src="{% static 'pesca/js/pescajs.js' %}"></script>
 </body>
 
-    <div>
-        <a href="{% url 'menuzin:menupagina' %}">Menu</a>
-    </div>
+<div>
+    <a href="{% url 'menuzin:menupagina' %}">Menu</a>
+</div>
 
 </html>
