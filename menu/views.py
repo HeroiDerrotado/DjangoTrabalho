@@ -4,7 +4,7 @@ from menu.models import Menu
 # Create your views here.
 
 def menu_views(request):
-    return render(request,'menu/paginas/menu.html')
+    return render(request,'menu/paginas/menu_body.html')
 
 def views_busca(request):
 

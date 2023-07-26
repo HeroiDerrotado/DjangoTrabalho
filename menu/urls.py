@@ -22,5 +22,5 @@ app_name = "menuzin"
 
 
 urlpatterns = [
-    path('menu/',views.menu_views,name = "menupagina"),
+    path('',views.menu_views,name = "menupagina")
 ]
