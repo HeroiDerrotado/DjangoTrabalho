@@ -17,14 +17,14 @@ class EspecieGeral(models.Model):
     publicada=models.BooleanField(default=False)
     data=models.DateTimeField(default=datetime.now,blank=False)
 
-    vidamarinha= models.ForeignKey(
-        to = User,
-        on_delete= models.SET_NULL,
-        null = True,
-        blank= False,
-        related_name = 'user'
+    # vidamarinha= models.ForeignKey(
+    #     to = User,
+    #     on_delete= models.SET_NULL,
+    #     null = True,
+    #     blank= False,
+    #     related_name = 'user'
 
-    )
+    # )
     
     def __str__(self):
         return self.nome
