@@ -13,7 +13,7 @@
     <h1>pagina login</h1>
 
     <section>
-        <form action="{% url 'usuario:loginpagina' %}" method="POST">
+        <form action="{% url 'menuzin:menupagina' %}" method="POST">
             {% csrf_token %}
             {% for campo in formulario.visible_fields %}
             <div>
