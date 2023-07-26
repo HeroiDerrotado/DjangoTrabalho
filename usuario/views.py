@@ -69,6 +69,4 @@ def logout(request):
     auth.logout(request)
     return redirect('usuario:loginpagina')
 
-def usuario_head_views(request):
-    return render(request,'usuario/parciais/usuario_head.html')
 

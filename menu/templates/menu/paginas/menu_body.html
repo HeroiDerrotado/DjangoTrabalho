@@ -24,6 +24,10 @@
                                 href="{% url 'menuzin:menupagina' %}">Início</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link active" aria-current="page"
+                                href="{% url 'admin:index' %}">Admin</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="{% url 'usuario:cadastropagina' %}">Cadastro</a>
                         </li>
                         <li class="nav-item dropdown">
@@ -35,6 +39,7 @@
                                 <li><a class="dropdown-item" href="{% url 'peixes:especiespagina' %}">Fundo do
                                         Mar</a>
                                 </li>
+                                <hr class="dropdown-divider">
                                 <li><a class="dropdown-item" href="{% url 'vidas:vidamarinhapagina' %}">Vida
                                         Marinha</a>
                                 </li>
@@ -42,8 +47,8 @@
                                     <hr class="dropdown-divider">
                                 </li>
                                 <li><a class="dropdown-item" href="{% url 'pescaria:pescariapagina' %}">Aquário</a>
-                                </li>
-                                <li><a class="dropdown-item" href="{% url 'admin:index' %}">Admin</a></li>
+                                {% comment %} </li>
+                                <li><a class="dropdown-item" href="{% url 'admin:index' %}">Admin</a></li> {% endcomment %}
                             </ul>
                         </li>
                     </ul>
