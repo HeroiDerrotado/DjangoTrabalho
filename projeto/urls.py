@@ -21,11 +21,11 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',include('usuario.urls')),
+    path('',include('menu.urls')),
     path('vidamarinha/',include("vidamarinha.urls")),
     path('pesca/',include("pesca.urls")),
     path('especies/',include("especies.urls")),
-    path('menu',include('menu.urls'))
+    path('usuario/',include('usuario.urls'))
 ]
 
 urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
