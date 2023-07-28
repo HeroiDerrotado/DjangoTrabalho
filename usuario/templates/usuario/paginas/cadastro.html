@@ -1,53 +1,49 @@
 {% load static %}
 
-{% block conteudo %}
-<h1>Pagina de Cadastro</h1>
-<section>
-  <form action="{% url 'usuario:loginpagina' %}" method="POST">
-    {% csrf_token %}
-    <div>
-      <label for="nome_cadastro">Nome Completo</label>
-      <input type="text" name="nome_cadastro" placeholder="Digite seu nome" required>
-    </div>
-    <div>
-      <label for="email">email</label>
-      <input type="text" name="email" placeholder="Digite seu email" required>
-    </div>
-    <div>
-      <label for="senha1">Senha</label>
-      <input type="text" name="senha1" placeholder="Sua senha" required>
-    </div>
-
-    {% for mensagem in messages %}
-    <div>
-      <p>{{ mensagem }}</p>
-    </div>
-    {% endfor %}
+<!DOCTYPE html>
+<html lang="en">
+<html>
 
 
-    <div>
-      <label for="senha2">Confirmação de Senha </label>
-      <input type="text" name="senha2" placeholder="Confirme Sua senha" required>
-    </div>
+{% include 'usuario/parciais/usuario_head.html' %}
 
-    {% for erro in campo.errors %}
-    <div>
-      {{ erro }}
-    </div>
-    {% endfor %}
+<body>
+
+  {% block conteudo %}
+
+  <h1>Pagina de Cadastro</h1>
+  <section>
+    <form action="{% url 'menuzin:menupagina' %}" method="POST">
+      <div class="forma">
+        {% csrf_token %}
+        {% for campo in formulario.visible_fields %}
+      </div>
+      <div>
+        <label for="{{ campo.id_for_label }}"><b>{{ campo.label }}</b></label>
+        {{ campo }}
+
+      </div>
+      {% endfor %}
+
+      {% for erro in campo.errors %}
+      <div>
+        {{ erro }}
+      </div>
+      {% endfor %}
 
 
-    <div>
-      <button type="submit">Criar conta</button>
-    </div>
-    <div>
-      <a href="{% url 'menuzin:menupagina' %}">Menu</a>
-    </div>
+      <div>
+        <button type="submit">Criar conta</button>
+      </div>
+      <div>
+        <a href="{% url 'menuzin:menupagina' %}">Menu</a>
+      </div>
 
-  </form>
-</section>
+    </form>
+  </section>
 
+  {% endblock conteudo %}
 
+</body>
 
-
-{% endblock conteudo %}
+</html>

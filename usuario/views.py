@@ -1,6 +1,6 @@
 
 from usuario.form import LoginForms, CadastroForms
-from django.shortcuts import render,redirect
+from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import auth
 from django.contrib import messages
@@ -9,64 +9,66 @@ from django.contrib import messages
 # Create your views here.
 
 def login_views(request):
-    formulario= LoginForms()
+    formulario = LoginForms()
 
     if request.method == 'POST':
+        formulario = LoginForms(request.POST)
+
         if formulario.is_valid():
 
-            nome=formulario['nome_login'].value()
-            senha=formulario['senha'].value()
+            nome = formulario['nome_login'].value()
+            senha = formulario['senha'].value()
 
             usuario = auth.authenticate(
                 request,
-                usename= nome,
-                password = senha
+                usename=nome,
+                password=senha
             )
 
             if usuario is not None:
-                auth.login(request,usuario)
-                messages.success(request,f'usuario {nome} logado com sucesso!')
-                return redirect('cadastro:index')
+                auth.login(request, usuario)
+                messages.success(
+                    request, f'usuario {nome} logado com sucesso!')
+                return redirect('usuario:loginpagina')
             else:
-                messages.error(request,'Erro ao tentar logar!')
-                return redirect('usuario:login')
+                messages.error(request, 'Erro ao tentar logar!')
+                return redirect('usuario:loginpagina')
 
+    return render(request, "usuario/paginas/usuario.html", context={'formulario': formulario})
 
-    return render(request,"usuario/paginas/usuario.html",context={'formulario':formulario})
 
 def cadastro_views(request):
-    formulario = CadastroForms()
+    formulario1 = CadastroForms()
 
     if request.method == "POST":
         formulario = CadastroForms(request.POST)
-    
+
         if formulario.is_valid():
             if formulario['senha1'].value() == formulario['senha2'].value():
-                messages.error(request,'As senhas não são iguais!')
+                messages.error(request, 'As senhas não são iguais!')
                 return redirect('usuario:cadastro')
-    
-            nome=formulario['nome_cadastro'].value()
-            email=formulario['email_cadastro'].value()
-            senha1=formulario['senha_1'].value()
-            senha2= formulario['senha_2'].value()
 
-            if User.objects.filter(username=nome,address=email,password1=senha1,password2=senha2).exists():
+            nome = formulario['nome_cadastro'].value()
+            email = formulario['email_cadastro'].value()
+            senha1 = formulario['senha_1'].value()
+            senha2 = formulario['senha_2'].value()
+
+            if User.objects.filter(username=nome, address=email, password1=senha1, password2=senha2).exists():
                 return redirect('usuario:cadastro')
 
             novo_usuario = User.objects.create_user(
 
-                username = nome,
-                email = email,
-                password1 = senha1,
-                password2 = senha2
+                username=nome,
+                email=email,
+                password1=senha1,
+                password2=senha2
             )
 
             novo_usuario.save()
             return redirect('usuario:login')
-    return render(request,"usuario/paginas/cadastro.html",context ={'formulario':formulario})
+    return render(request, "usuario/paginas/cadastro.html", context={'formulario': formulario1})
+
 
 def logout(request):
     auth.logout(request)
     return redirect('usuario:loginpagina')
-
-
