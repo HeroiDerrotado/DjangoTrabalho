@@ -1,4 +1,3 @@
-{% extends 'usuario/paginas/base.html' %}
 {% load static %}
 
 <!DOCTYPE html>
@@ -13,7 +12,7 @@
     <h1>pagina login</h1>
 
     <section>
-        <form action="{% url 'usuario:loginpagina' %}" method="POST">
+        <form action="{% url 'menuzin:menupagina' %}" method="POST">
             {% csrf_token %}
             {% for campo in formulario.visible_fields %}
             <div>
@@ -34,11 +33,11 @@
             </div>
 
             <div>
-                <a href="{% url 'usuario:logout' %}">Realizar Cadastro</a>
+                <a href="{% url 'usuario:cadastropagina' %}">Realizar Cadastro</a>
             </div>
 
             <div>
-                <a href="{% url 'usuario:cadastropagina' %}">Sair da pagina</a>
+                <a href="{% url 'usuario:logout' %}">Sair da pagina</a>
             </div>
 
             <div>
@@ -53,3 +52,4 @@
 
 </html>
 {% endblock usuario %}
+

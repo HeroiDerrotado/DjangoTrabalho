@@ -3,7 +3,7 @@ from django import forms
 
 class LoginForms(forms.Form):
     nome_login = forms.CharField(
-        label='Nome de login',
+        label='Login',
         required=True,
         max_length=100,
         widget=forms.TextInput(
@@ -14,7 +14,7 @@ class LoginForms(forms.Form):
     )
 
     senha_login = forms.CharField(
-        label='Sua senha',
+        label='Senha',
         required=True,
         max_length=70,
         widget=forms.PasswordInput(
@@ -27,8 +27,8 @@ class LoginForms(forms.Form):
 
 class CadastroForms(forms.Form):
 
-    nome_completo = forms.CharField(
-        label='Seu cadastro',
+    nome_cadastro = forms.CharField(
+        label='Nome',
         required=True,
         max_length=100,
         widget=forms.TextInput(
@@ -39,18 +39,18 @@ class CadastroForms(forms.Form):
     )
 
     email = forms.EmailField(
-        label="email",
+        label="Email",
         required=True,
         max_length=True,
         widget=forms.TextInput(
             attrs={
-                'placeholder': "Digite seu nome"
+                'placeholder': "Digite seu email"
             }
         )
     )
 
     senha_cadastro1 = forms.CharField(
-        label='senha1',
+        label='Senha',
         required=True,
         max_length=70,
         widget=forms.PasswordInput(
@@ -61,7 +61,7 @@ class CadastroForms(forms.Form):
     )
 
     senha_cadastro2 = forms.CharField(
-        label='senha2',
+        label='Digite novamente',
         required=True,
         max_length=70,
         widget=forms.PasswordInput(

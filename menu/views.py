@@ -3,6 +3,10 @@ from menu.models import Menu
 
 # Create your views here.
 
+
+def base_views(request):
+    return render(request,'menu/paginas/base.html')
+
 def menu_views(request):
     return render(request,'menu/paginas/menu_body.html')
 

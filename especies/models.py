@@ -19,10 +19,5 @@ class EspecieGeral(models.Model):
     publicada = models.BooleanField(default=False)
     data = models.DateTimeField(default=datetime.now, blank=False)
 
-    vidamarinha = models.ForeignKey(
-        to=Curiosidade,
-        on_delete=models.CASCADE
-    )
-
     def __str__(self):
         return self.nome

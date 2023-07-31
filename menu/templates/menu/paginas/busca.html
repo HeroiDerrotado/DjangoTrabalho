@@ -1,13 +1,17 @@
 {% load static %}
 
+
 <!DOCTYPE html>
 <html lang="en">
 
 {% include 'especies/parciais/especies_head.html' %}
 
 <body>
+
+    
     <div>
-        <form action="{% url 'menuzin:menupagina' %}"></form>
+        <form action="{% url 'menuzin:buscapagina' %}"></form>
+
         <input type="text" name="buscando" placeholder="O que você deseja encontrar?">
         <button type="submit">Buscar</button>
     </div>

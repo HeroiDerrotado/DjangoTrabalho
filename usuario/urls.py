@@ -17,6 +17,8 @@ Including another URLconf
 
 from django.urls import path
 from . import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 app_name = "usuario"
 
@@ -26,3 +28,5 @@ urlpatterns = [
     path('cadastro/',views.cadastro_views,name="cadastropagina"),
     path('logout/',views.logout,name='logout'),
 ]
+
+urlpatterns += static(settings.MEDIA_URL,document_ROOT=settings.MEDIA_ROOT)
