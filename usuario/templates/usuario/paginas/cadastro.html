@@ -12,7 +12,7 @@
   <h1>Pagina de Cadastro</h1>
   <section>
     <div>
-    <form action="{% url 'menuzin:menupagina' %}" method="POST">
+    <form action="{% url 'usuario:cadastropagina' %}" method="POST">
       
         {% csrf_token %}
         {% for campo in formulario.visible_fields %}

@@ -26,7 +26,7 @@ app_name = "usuario"
 urlpatterns = [
     path('entrar/',views.login_views,name = "loginpagina"),
     path('cadastro/',views.cadastro_views,name="cadastropagina"),
-    path('logout/',views.logout,name='logout'),
+    path('logout/',views.logout_view,name='logout'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL,document_ROOT=settings.MEDIA_ROOT)

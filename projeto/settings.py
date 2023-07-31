@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'especies.apps.EspeciesConfig',
     'usuario.apps.UsuarioConfig',
     'menu.apps.MenuConfig',
+
 ]
 
 MIDDLEWARE = [
