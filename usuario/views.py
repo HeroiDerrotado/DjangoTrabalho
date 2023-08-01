@@ -2,61 +2,76 @@ from usuario.form import LoginForms, CadastroForms
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from django.http import HttpResponse
-from usuario.models import Usuario  # Importe o modelo Usuario do arquivo models.py
+from django.contrib import auth
+# Importe o modelo Usuario do arquivo models.py
+from django.contrib.auth.models import User
+
 
 def base_views(request):
-    if request.user.is_authenticated:
-        return render(request, 'usuario/paginas/base.html')
-    else:
-        return HttpResponse("Acesso não autorizado. Faça login primeiro.")
+    if not request.user.is_authenticated:
+        messages.error(request, "Usuario não logado")
+        return redirect("usuario:loginpagina")
+    return render(request, 'usuario/paginas/base.html')
 
-def base2_views(request):
-    if request.user.is_authenticated:
-        return render(request, 'usuario/paginas/base2.html')
-    else:
-        return HttpResponse("Acesso não autorizado. Faça login primeiro.")
 
 def login_views(request):
-    formulario = LoginForms(request.POST or None)
 
-    if request.method == "POST" and formulario.is_valid():
-        username = formulario.cleaned_data.get("username")
-        password = formulario.cleaned_data.get("password")
+    formulario = LoginForms()
 
-        user = authenticate(request, username=username, password=password)
+    if request.method == "POST":
+        formulario = LoginForms(request.POST)
+        if formulario.is_valid():
 
-        if user is not None:
-            login(request, user)
-            return HttpResponse('Autenticado com sucesso.')
+            nome = formulario['nome_login'].value()
+            senha = formulario['senha_login'].value()
+
+            usuario = auth.authenticate(
+                request, username=nome, password=senha)
+            if usuario is not None:
+                auth.login(request, usuario)
+                messages.success(request, f"usuario{nome}logado com sucesso")
+                return redirect('menuzin:menupagina')
         else:
-            messages.error(request, "Nome de usuário ou senha incorretos.")
+            messages.error(request, 'erro ao tentar logar')
             return redirect('usuario:loginpagina')
 
-    return render(request, "usuario/paginas/usuario.html", {'formulario': formulario})
+    return render(request, 'usuario/paginas/usuario.html', {'formulario': formulario})
+
 
 def cadastro_views(request):
-    formulario = CadastroForms(request.POST or None)
 
-    if request.method == 'POST' and formulario.is_valid():
-        username = formulario.cleaned_data.get("username")
-        password = formulario.cleaned_data.get("senha")
-        email = formulario.cleaned_data.get("email")
+    formulario = CadastroForms()
 
-        if Usuario.objects.filter(username=username).exists():
-            messages.error(request, "Já existe um usuário com esse nome.")
-            return redirect('usuario:cadastropagina')
+    if request.method == "POST":
+        formulario = CadastroForms(request.POST)
 
-        # Crie o novo usuário com a senha criptografada
-        user = Usuario(username=username, senha=password, email=email)
-        user.save()
+        if formulario.is_valid():
+            if formulario['senha1'].value() == formulario["senha2"].value():
+                messages.error(request, "As senhas não são iguais")
+                return redirect("usuario:cadastropagina")
 
-        # Faça login após o cadastro bem-sucedido
-        login(request, user)
-        return HttpResponse('Autenticado com sucesso após o cadastro.')
+            nome = formulario["nome_cadastro"].value()
+            email = formulario["email_cadastro"].value()
+            senha = formulario["senha_cadastro1"].value()
 
-    return render(request, 'usuario/paginas/cadastro.html', {'formulario': formulario})
+            if User.objects.filter(nome=nome, email=email, senha=senha).exists():
+                messages.error(request, "O usario já existe")
+                return redirect("usuario:cadastropagina")
+
+            novo_usuario = User.objects.create_user(
+                username=nome,
+                email=email,
+                senha=senha
+            )
+
+            novo_usuario.save()
+            messages.success(request, "Cadastro realizado com sucesso")
+            return redirect("usuario:loginpagina")
+
+    return render(request, "usuario/paginas/cadastro.html", {'formulario': formulario})
+
 
 def logout_view(request):
-    logout(request)
+    auth.logout(request)
+    messages.success(request, "Logout efetuado com sucesso")
     return redirect('usuario:loginpagina')

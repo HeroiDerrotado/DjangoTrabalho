@@ -1,4 +1,4 @@
-{% extends 'usuario/paginas/base2.html' %}
+{% extends 'usuario/paginas/base.html' %}
 {% load static %}
 
 <!DOCTYPE html>
@@ -12,35 +12,34 @@
   <h1>Pagina de Cadastro</h1>
   <section>
     <div>
-    <form action="{% url 'usuario:cadastropagina' %}" method="POST">
-      
+      <form action="{% url 'usuario:cadastropagina' %}" method="POST">
         {% csrf_token %}
         {% for campo in formulario.visible_fields %}
-      </div>
-      <div>
-        <label for="{{ campo.id_for_label }}"><b>{{ campo.label }}</b></label>
-        {{ campo }}
+    </div>
+    <div>
+      <label for="{{ campo.id_for_label }}"><b>{{ campo.label }}</b></label>
+      {{ campo }}
 
-      </div>
-      {% endfor %}
+    </div>
+    {% endfor %}
 
-      {% for erro in campo.errors %}
-      <div>
-        {{ erro }}
-      </div>
-      {% endfor %}
+    {% for erro in campo.errors %}
+    <div>
+      {{ erro }}
+    </div>
+    {% endfor %}
 
 
-      <div>
-        <button type="submit">Criar conta</button>
-      </div>
-      <div>
-        <a href="{% url 'menuzin:menupagina' %}">Menu</a>
-      </div>
+    <div>
+      <button type="submit">Criar conta</button>
+    </div>
+    <div>
+      <a href="{% url 'menuzin:menupagina' %}">Menu</a>
+    </div>
 
-      <div>
-        <a href="{% url 'usuario:loginpagina' %}">Login</a>
-      </div>
+    <div>
+      <a href="{% url 'usuario:loginpagina' %}">Login</a>
+    </div>
 
     </form>
   </section>

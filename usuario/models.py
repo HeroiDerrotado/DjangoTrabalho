@@ -1,25 +1,32 @@
 from django.db import models
-from django.contrib.auth.hashers import make_password
-from django.utils import timezone
-
-class Usuario(models.Model):
-    username = models.CharField(max_length=150, unique=True)
-    senha = models.CharField(max_length=128)
-    email = models.EmailField(unique=True)
-    data_cadastro = models.DateTimeField(default=timezone.now)
-
-    def save(self, *args, **kwargs):
-        self.senha = make_password(self.senha)
-        super().save(*args, **kwargs)
-
-    def __str__(self):
-        return self.username
+from django.contrib.auth.models import User
+from datetime import datetime
 
 
 class Cadastro(models.Model):
-    usuario = models.OneToOneField(Usuario, on_delete=models.CASCADE)
-    email = models.EmailField()
-    senha = models.CharField(max_length=125,null=True,blank=True)
 
-    def __str__(self):
-        return self.usuario.username
+    nome = models.CharField(max_length=125, blank=False, null=False)
+    email = models.EmailField(max_length=125, blank=False, null=False)
+    senha = models.CharField(max_length=125, blank=False, null=False)
+
+
+class Usuario(models.Model):
+
+    OPCOES_CATEGORIA = [
+        ("PESSOA", "pessoa"),
+        ("CONSOLE", "console")
+    ]
+
+    OPCAO_USUARIO = [
+        ("USUARIO", "usuario"),
+    ]
+
+    nome = models.CharField(max_length=125, blank=False, null=False)
+    legenda = models.CharField(max_length=125, blank=False, null=False)
+    categoria = models.CharField(
+        max_length=125, choices=OPCOES_CATEGORIA, default='OPCOES_CATEGORIA')
+    descrisao = models.TextField(null=False, blank=False)
+    foto = models.ImageField(upload_to='imagem/%Y/%n/%d/', blank=True)
+    eh_publicada = models.BooleanField(default=False)
+    data_fotografia = models.DateTimeField(default=datetime.now, blank=False)
+    Usuario = models.ForeignKey(Cadastro, on_delete=models.CASCADE)

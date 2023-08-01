@@ -4,21 +4,28 @@
 <html lang="en">
 
 <html>
-    
+
 {% block usuario %}
+
 <body>
 
 
-    <h1>pagina login</h1>
+    <h1>Pagina de login e Cadastro</h1>
 
     <section>
-        <form action="{% url 'menuzin:menupagina' %}" method="POST">
+        <form action="{% url 'usuario:loginpagina' %}" method="POST">
             {% csrf_token %}
             {% for campo in formulario.visible_fields %}
             <div>
                 <label for='{{ campo.id_for_label }}'><b>{{ campo.label }}</b></label>
                 {{ campo }}
             </div>
+
+            {% for erro in campo.error %}
+            <div>
+                {{ erro }}
+            </div>
+            {% endfor %}
 
             {% for mensagem in messages %}
             <div>
@@ -52,4 +59,3 @@
 
 </html>
 {% endblock usuario %}
-
