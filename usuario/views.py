@@ -1,6 +1,5 @@
 from usuario.form import LoginForms, CadastroForms, ImagemForm
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib import auth
 from django.contrib.auth.models import User
@@ -40,8 +39,8 @@ def apaga_views(request, id_url):
 
 
 def edita_views(request, id_url):
-    if not request.User.is_authenticated:
-        messages.error(request='usuario não logado na pagina')
+    if not request.user.is_authenticated:
+        messages.error(request, 'Usuário não logado na página')
         return redirect('usuario:loginpagina')
 
     imagem = Usuario.objects.filter(id=id_url)

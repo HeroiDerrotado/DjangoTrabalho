@@ -35,7 +35,7 @@ urlpatterns = [
          views.edita_views, name='editar_imagem'),
     path('base/', views.base_views, name='basepagina'),
     path('outra/', views.outra_view),
-    path{'login/',}
+
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_ROOT=settings.MEDIA_ROOT)
