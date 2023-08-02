@@ -5,6 +5,7 @@ from django.contrib import messages
 from django.contrib import auth
 from django.contrib.auth.models import User
 from usuario.models import Usuario
+from django.contrib.auth.decorators import login_required
 
 
 
@@ -12,8 +13,9 @@ from usuario.models import Usuario
 def base_views(request):
     return render(request,'usuario/paginas/base.html')
 
+
 def adiciona_views(request):
-    if not request.User.is_authenticated:
+    if not request.user.is_authenticate():
         messages.error(request='usuario não logado na pagina')
         return redirect('usuario:loginpagina')
     

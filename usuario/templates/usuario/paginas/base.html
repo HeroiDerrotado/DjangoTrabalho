@@ -23,7 +23,7 @@
 
             <div>
                 <a href="{% url 'usuario:editar_imagem' imagem.id %}">Editar</a>
-                <a href="{% url 'usuario:apaga_imagem' imagem.id %}">Apagar</a>
+                <a href="{% url 'usuario:apagar_imagem' imagem.id %}">Apagar</a>
             </div>
 
             {% for erro in campo.error %}
