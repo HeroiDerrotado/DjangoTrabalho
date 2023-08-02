@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from menu.models import Menu
+from menu.models import Busca
 
 # Create your views here.
 
@@ -11,13 +12,14 @@ def menu_views(request):
     return render(request,'menu/paginas/menu_body.html')
 
 def views_busca(request):
-
     imagens = Menu.objects.all()
-    print(request)
+    form = Busca()
 
     if 'buscando' in request.GET:
-        nome = request.GET['buscando']
-        if nome:
-            imagens = imagens.filter(nome__icontains=nome)
+        form = Busca(request.GET)
+        if form.is_valid():
+            nome = form.cleaned_data['buscando']
+            if nome:
+                imagens = imagens.filter(nome__icontains=nome)
 
-    return render(request, 'menu/paginas/busca.html', context ={'imagens' : imagens})
+    return render(request, 'menu/paginas/busca.html', {'imagens': imagens, 'form': form})

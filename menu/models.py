@@ -4,6 +4,13 @@ from datetime import datetime
 
 # Create your models here.
 
+from django import forms
+
+class Busca(models.Model):
+    buscando = forms.CharField(max_length=100, required=False)
+
+
+
 
 class Menu(models.Model):
 
