@@ -27,6 +27,10 @@ urlpatterns = [
     path('entrar/',views.login_views,name = "loginpagina"),
     path('cadastro/',views.cadastro_views,name="cadastropagina"),
     path('logout/',views.logout_view,name='logout'),
+    path('adicionar-imagem/',views.adiciona_views,name='adicionar_imagem'),
+    path('apagar-imagem/',views.apaga_views,name='apaga_imagem'),
+    path('editar-imagem/',views.edita_views,name='editar_imagem'),
+    path('base/',views.base_views,name='basepagina')
 ]
 
 urlpatterns += static(settings.MEDIA_URL,document_ROOT=settings.MEDIA_ROOT)

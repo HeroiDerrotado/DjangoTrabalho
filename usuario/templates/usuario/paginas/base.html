@@ -13,12 +13,17 @@
     <h1>Pagina de login e Cadastro</h1>
 
     <section>
-        <form action="{% url 'usuario:loginpagina' %}" method="POST">
+        <form action="{% url 'usuario:editar_imagem' id_url %}" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             {% for campo in formulario.visible_fields %}
             <div>
                 <label for='{{ campo.id_for_label }}'><b>{{ campo.label }}</b></label>
                 {{ campo }}
+            </div>
+
+            <div>
+                <a href="{% url 'usuario:editar_imagem' imagem.id %}">Editar</a>
+                <a href="{% url 'usuario:apaga_imagem' imagem.id %}">Apagar</a>
             </div>
 
             {% for erro in campo.error %}

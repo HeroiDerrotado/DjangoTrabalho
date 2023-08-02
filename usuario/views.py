@@ -1,10 +1,60 @@
-from usuario.form import LoginForms, CadastroForms
+from usuario.form import LoginForms, CadastroForms, ImagemForm
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib import auth
-# Importe o modelo Usuario do arquivo models.py
 from django.contrib.auth.models import User
+from usuario.models import Usuario
+
+
+
+
+def base_views(request):
+    return render(request,'usuario/paginas/base.html')
+
+def adiciona_views(request):
+    if not request.User.is_authenticated:
+        messages.error(request='usuario não logado na pagina')
+        return redirect('usuario:loginpagina')
+    
+    formulario = ImagemForm
+    if request.method == 'POST':
+        formulario = ImagemForm(request.POST,request.FILES)
+        if formulario.is_valid():
+            formulario.save()
+            messages.success(request,'Nova imagem cadastrada')
+            return redirect('usuario:basepagina')
+    
+    return render(request,'usuario/paginas/adiciona.html',context={'formulario':formulario})
+
+def apaga_views(request,id_url):
+    
+    imagem = imagem[0]
+    imagem.delete()
+    messages.success(request,'imagem apagada com suceso')
+    
+    return render(request,'usuario/paginas/apaga.html')
+
+def edita_views(request,id_url):
+    if not request.User.is_authenticated:
+        messages.error(request='usuario não logado na pagina')
+        return redirect('usuario:loginpagina')
+    
+    imagem = Usuario.objects.filter(id=id_url)
+    if not imagem:
+        messages.error(request,'imagem não encontrada')
+        return redirect('usuario:basepagina')
+    
+    imagem = imagem[0]
+    formulario = ImagemForm(instance=imagem)
+    if request.method == 'POST':
+        formulario = ImagemForm(request.POST,request.FILES,instance=imagem)
+        if  fomulario.is_valid():
+            formulario.save()
+            messages.success(request,'Imagem alterada')
+            return redirect('usuario:basepagina')
+       
+    return render(request,'ususario/paginas/edita.html',context={'formulario':formulario,'id_url':id_url})
 
 
 def base_views(request):
