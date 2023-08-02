@@ -19,18 +19,23 @@ from django.urls import path
 from . import views
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib import auth
 
 app_name = "usuario"
 
 
 urlpatterns = [
-    path('entrar/',views.login_views,name = "loginpagina"),
-    path('cadastro/',views.cadastro_views,name="cadastropagina"),
-    path('logout/',views.logout_view,name='logout'),
-    path('adicionar-imagem/',views.adiciona_views,name='adicionar_imagem'),
-    path('apagar-imagem/<int:id_url>',views.apaga_views,name='apagar_imagem'),
-    path('editar-imagem/<int:id_url>',views.edita_views,name='editar_imagem'),
-    path('base/',views.base_views,name='basepagina')
+    path('entrar/', views.login_views, name="loginpagina"),
+    path('cadastro/', views.cadastro_views, name="cadastropagina"),
+    path('logout/', views.logout_view, name='logout'),
+    path('base/adicionar-imagem/', views.adiciona_views, name='adicionar_imagem'),
+    path('usuario/base/apagar-imagem/<int:id_url>',
+         views.apaga_views, name='apagar_imagem'),
+    path('usuario/base/editar-imagem/<int:id_url>',
+         views.edita_views, name='editar_imagem'),
+    path('base/', views.base_views, name='basepagina'),
+    path('outra/', views.outra_view),
+    path{'login/',}
 ]
 
-urlpatterns += static(settings.MEDIA_URL,document_ROOT=settings.MEDIA_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_ROOT=settings.MEDIA_ROOT)

@@ -13,50 +13,50 @@
     <h1>Pagina de login e Cadastro</h1>
 
     <section>
-        <form action="{% url 'usuario:editar_imagem' id_url %}" method="POST" enctype="multipart/form-data">
+        <form action="{% url 'usuario:loginpagina' %}" method="POST" enctype="multipart/form-data">
+
             {% csrf_token %}
             {% for campo in formulario.visible_fields %}
             <div>
                 <label for='{{ campo.id_for_label }}'><b>{{ campo.label }}</b></label>
                 {{ campo }}
             </div>
-
-            <div>
-                <a href="{% url 'usuario:editar_imagem' imagem.id %}">Editar</a>
-                <a href="{% url 'usuario:apagar_imagem' imagem.id %}">Apagar</a>
-            </div>
-
-            {% for erro in campo.error %}
-            <div>
-                {{ erro }}
-            </div>
             {% endfor %}
 
-            {% for mensagem in messages %}
-            <div>
-                <p>{{ mensagem }}</p>
-            </div>
-            {% endfor %}
+            <form action="{% url 'usuario:adicionar_imagem' %}" method="POST" enctype="multipart/form-data">
 
 
-            {% endfor %}
-            <div>
-                <button type="Submit">Login</button>
-            </div>
 
-            <div>
-                <a href="{% url 'usuario:cadastropagina' %}">Realizar Cadastro</a>
-            </div>
+                {% for erro in campo.error %}
+                <div>
+                    {{ erro }}
+                </div>
+                {% endfor %}
 
-            <div>
-                <a href="{% url 'usuario:logout' %}">Sair da pagina</a>
-            </div>
+                {% for mensagem in messages %}
+                <div>
+                    <p>{{ mensagem }}</p>
+                </div>
+                {% endfor %}
 
-            <div>
-                <a href="{% url 'menuzin:menupagina' %}">Menu</a>
-            </div>
 
-        </form>
+                <div>
+                    <button type="Submit">Login</button>
+                </div>
+
+                <div>
+                    <a href="{% url 'usuario:cadastropagina' %}">Realizar Cadastro</a>
+                </div>
+
+                <div>
+                    <a href="{% url 'usuario:logout' %}">Sair da pagina</a>
+                </div>
+
+                <div>
+                    <a href="{% url 'menuzin:menupagina' %}">Menu</a>
+                </div>
+
+            </form>
     </section>
 
 

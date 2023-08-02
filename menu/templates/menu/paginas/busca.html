@@ -8,12 +8,14 @@
 
 <body>
 
-    
-    <div>
-        <form action="{% url 'menuzin:buscapagina' %}"></form>
 
-        <input type="text" name="buscando" placeholder="O que você deseja encontrar?">
-        <button type="submit">Buscar</button>
+    <div class="row">
+        <div class="col-sm-6">
+            <form action="." method="GET" class="form-inline">
+                <input type="text" id="search" name="search" class="form-control" placeholder="Busca">
+                <input type="submit" class="btn btn-primary" style="margin-left: 10px;" value="OK">
+            </form>
+        </div>
     </div>
 </body>
 

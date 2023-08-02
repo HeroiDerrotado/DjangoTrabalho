@@ -6,57 +6,66 @@ from django.contrib import auth
 from django.contrib.auth.models import User
 from usuario.models import Usuario
 from django.contrib.auth.decorators import login_required
-
-
+from django.urls import reverse
 
 
 def base_views(request):
-    return render(request,'usuario/paginas/base.html')
+    return render(request, 'usuario/paginas/base.html')
 
 
+@login_required(login_url='usuario.html')
 def adiciona_views(request):
     if not request.user.is_authenticate():
         messages.error(request='usuario não logado na pagina')
         return redirect('usuario:loginpagina')
-    
+
     formulario = ImagemForm
     if request.method == 'POST':
-        formulario = ImagemForm(request.POST,request.FILES)
+        formulario = ImagemForm(request.POST, request.FILES)
         if formulario.is_valid():
             formulario.save()
-            messages.success(request,'Nova imagem cadastrada')
+            messages.success(request, 'Nova imagem cadastrada')
             return redirect('usuario:basepagina')
-    
-    return render(request,'usuario/paginas/adiciona.html',context={'formulario':formulario})
 
-def apaga_views(request,id_url):
-    
+    return render(request, 'usuario/paginas/adiciona.html', context={'formulario': formulario})
+
+
+def apaga_views(request, id_url):
+
     imagem = imagem[0]
     imagem.delete()
-    messages.success(request,'imagem apagada com suceso')
-    
-    return render(request,'usuario/paginas/apaga.html')
+    messages.success(request, 'imagem apagada com suceso')
 
-def edita_views(request,id_url):
+    return render(request, 'usuario/paginas/apaga.html', context={'id_url': id_url})
+
+
+def edita_views(request, id_url):
     if not request.User.is_authenticated:
         messages.error(request='usuario não logado na pagina')
         return redirect('usuario:loginpagina')
-    
+
     imagem = Usuario.objects.filter(id=id_url)
     if not imagem:
-        messages.error(request,'imagem não encontrada')
+        messages.error(request, 'imagem não encontrada')
         return redirect('usuario:basepagina')
-    
+
     imagem = imagem[0]
     formulario = ImagemForm(instance=imagem)
     if request.method == 'POST':
-        formulario = ImagemForm(request.POST,request.FILES,instance=imagem)
-        if  fomulario.is_valid():
+        formulario = ImagemForm(request.POST, request.FILES, instance=imagem)
+        if fomulario.is_valid():
             formulario.save()
-            messages.success(request,'Imagem alterada')
+            messages.success(request, 'Imagem alterada')
             return redirect('usuario:basepagina')
-       
-    return render(request,'ususario/paginas/edita.html',context={'formulario':formulario,'id_url':id_url})
+
+    return render(request, 'ususario/paginas/edita.html', context={'formulario': formulario, 'id_da_imagem': id_url})
+
+
+def outra_view(request):
+    id_da_imagem = 1
+    url_editar_imagem = reverse('editar_imagem', args=[id_da_imagem])
+
+    return render(request, "usuario/paginas/outra.hrml", context={"url_editar-imagem": url_editar_imagem})
 
 
 def base_views(request):

@@ -22,7 +22,7 @@ app_name = "menuzin"
 
 
 urlpatterns = [
-    path('',views.menu_views,name = "menupagina"),
-    path('busca/',views.views_busca,name='buscapagina'),
-    path('base/',views.base_views),
+    path('', views.menu_views, name="menupagina"),
+    path('busca/', views.busca_views, name='buscapagina'),
+    path('base/', views.base_views),
 ]

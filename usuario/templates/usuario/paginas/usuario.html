@@ -21,6 +21,7 @@
                 <label for='{{ campo.id_for_label }}'><b>{{ campo.label }}</b></label>
                 {{ campo }}
             </div>
+            {% endfor %}
 
             {% for mensagem in messages %}
             <div>
@@ -28,11 +29,11 @@
             </div>
             {% endfor %}
 
-
-            {% endfor %}
             <div>
                 <button type="Submit">Login</button>
             </div>
+
+
 
             <div>
                 <a href="{% url 'usuario:logout' %}">Sair da pagina</a>
@@ -44,6 +45,16 @@
 
             <div>
                 <a href="{% url 'menuzin:menupagina' %}">Menu</a>
+            </div>
+
+
+            <div>
+
+                <a href="{% url 'usuario:adicionar_imagem' %}">Adicionar alguma imagem</a>
+                <br>
+                <a href="{% url 'usuario:apagar_imagem' 1 %}">Apagar alguma imagem</a>
+                <br>
+                <a href="{% url 'usuario:editar_imagem' 1 %}">Editar imagem</a>
             </div>
 
         </form>

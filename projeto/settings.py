@@ -54,6 +54,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
 ]
 
 ROOT_URLCONF = 'projeto.urls'
@@ -138,6 +139,9 @@ STATICFILES_DIRS = [
     BASE_DIR / 'meus_statics', 'especies/statics', 'pesca/statics', 'vidamarinha/statics'
 ]
 STATIC_ROOT = BASE_DIR / 'static'
+
+MEDIA_ROOT = "os.path.join(BASE_DIR, 'media)"
+MEDIA_URL = '/media/'
 
 
 # Default primary key field type
