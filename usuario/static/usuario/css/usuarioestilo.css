@@ -1,8 +1,50 @@
-.cadastro{
+/* Estilo para o corpo do documento */
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    padding: 0;
+    background-color: #f0f0f0;
+}
 
-    background-color: cadetblue;
-    padding: 20px;
+/* Estilo para o cabeçalho h1 */
+h1 {
     text-align: center;
-    background-position: center;
+    color: #333;
+}
 
+/* Estilo para a seção do formulário */
+section {
+    margin: 20px auto;
+    max-width: 400px;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Estilo para o rótulo e os campos do formulário */
+label, input, button, a {
+    display: block;
+    margin-bottom: 10px;
+}
+
+/* Estilo para o botão de submit */
+button[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Estilo para os links */
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+/* Estilo para os links quando hover (sobre o link) */
+a:hover {
+    text-decoration: underline;
 }

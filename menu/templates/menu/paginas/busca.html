@@ -1,22 +1,12 @@
-{% load static %}
-
-
-<!DOCTYPE html>
-<html lang="en">
-
-{% include 'especies/parciais/especies_head.html' %}
-
 <body>
-
-
     <div class="row">
         <div class="col-sm-6">
-            <form action="." method="GET" class="form-inline">
-                <input type="text" id="search" name="search" class="form-control" placeholder="Busca">
-                <input type="submit" class="btn btn-primary" style="margin-left: 10px;" value="OK">
+            <form method="post" action="{% url 'menuzin:busca_imagem' %}">
+                {% csrf_token %}
+                {{ formulario }}
+                <input type="text" name="termo_busca" placeholder="Digite sua busca aqui">
+                <button type="submit">Buscar</button>
             </form>
         </div>
     </div>
 </body>
-
-</html>

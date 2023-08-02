@@ -1,0 +1,12 @@
+
+<h2>Resultados para '{{ termo_busca }}':</h2>
+{% if imagens %}
+<ul>
+  {% for imagem in imagens %}
+  <li>{{ imagem.titulo }}</li>
+  <img src="{{ imagem.imagem.url }}" alt="{{ imagem.titulo }}" width="300">
+  {% endfor %}
+</ul>
+{% else %}
+<p>Nenhum resultado encontrado.</p>
+{% endif %}
