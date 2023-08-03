@@ -1,0 +1,20 @@
+{% extends 'usuario/paginas/base.html' %}
+
+{% block content %}
+<h1>Pagina de adição de imagens</h1>
+
+<section>
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ formulario.as_p }}
+    <button type="submit">Upload Imagem</button>
+  </form>
+
+  <h2>Imagens cadastradas:</h2>
+  <ul>
+    {% for imagem in imagens %}
+    <li>{{ imagem.titulo }} - <a href="{{ imagem.imagem.url }}">Visualizar</a></li>
+    {% endfor %}
+  </ul>
+</section>
+{% endblock %}

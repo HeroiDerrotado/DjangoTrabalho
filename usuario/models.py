@@ -30,3 +30,7 @@ class Usuario(models.Model):
         blank=True,
         related_name='descricao'
     )
+    
+class Imagem(models.Model):
+    titulo = models.CharField(max_length=100)
+    imagem = models.ImageField(upload_to='images/')

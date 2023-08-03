@@ -1,34 +1,11 @@
 from django import forms
-from usuario.models import Usuario
+from usuario.models import Imagem
 
 
-class ImagemForm(forms.Form):
+class ImagemForm(forms.ModelForm):
     class Meta:
-        model = Usuario
-        exclude = ['eh_publicada',]
-        
-        widgets = {
-            
-            'nome' :forms.TextInput(),
-            'legenda' :forms.TextInput(),
-            'categoria' :forms.Select(),
-            'descriçao' :forms.Textarea(),
-            'foto' :forms.FileInput(),
-            'data_fotografia' :forms.DateInput(
-                format= '%d/%m/%Y',
-                attrs={
-                   'type':'date',
-                }
-                
-            ),
-            'usuario':forms.Select(),
-        }
-        labels = {
-            
-            'descricao':'DESCRICAO',
-            'data_fotografia':'Data da Foto',
-            'usuario':'usuário'
-        }
+        model = Imagem
+        fields = ['titulo', 'imagem']
 
 class LoginForms(forms.Form):
     nome_login = forms.CharField(

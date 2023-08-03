@@ -3,22 +3,20 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib import auth
 from django.contrib.auth.models import User
-from usuario.models import Usuario
+from usuario.models import Usuario, Imagem
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
+
 
 
 def base_views(request):
     return render(request, 'usuario/paginas/base.html')
 
 
-@login_required(login_url='usuario.html')
+@login_required(login_url='usuario:loginpagina')
 def adiciona_views(request):
-    if not request.user.is_authenticate():
-        messages.error(request='usuario não logado na pagina')
-        return redirect('usuario:loginpagina')
+    formulario = ImagemForm()
 
-    formulario = ImagemForm
     if request.method == 'POST':
         formulario = ImagemForm(request.POST, request.FILES)
         if formulario.is_valid():
@@ -26,7 +24,9 @@ def adiciona_views(request):
             messages.success(request, 'Nova imagem cadastrada')
             return redirect('usuario:basepagina')
 
-    return render(request, 'usuario/paginas/adiciona.html', context={'formulario': formulario})
+    imagens = Imagem.objects.all() 
+    return render(request, 'usuario/paginas/adicionar.html', context={'formulario': formulario, 'imagens': imagens})
+
 
 
 def apaga_views(request, id_url):
@@ -57,7 +57,7 @@ def edita_views(request, id_url):
             messages.success(request, 'Imagem alterada')
             return redirect('usuario:basepagina')
 
-    return render(request, 'ususario/paginas/edita.html', context={'formulario': formulario, 'id_da_imagem': id_url})
+    return render(request, 'usuario/paginas/edita.html', context={'formulario': formulario, 'id_da_imagem': id_url})
 
 
 def outra_view(request):
