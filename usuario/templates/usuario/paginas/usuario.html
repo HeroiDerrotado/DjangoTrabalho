@@ -12,19 +12,14 @@
     <h1>Página de login</h1>
 
     <section>
-        <form action="{% url 'usuario:loginpagina' %}" method="POST">
+        <form action="{% url 'usuario:loginpagina' %}" method="POST"  enctype="multipart/form-data">
             {% csrf_token %}
+            {% for campo in formulario.visible_fields %}
             <div>
-                <label for='{{ formulario.nome_login.id_for_label }}'><b>{{ formulario.nome_login.label }}</b></label>
-
+              <label for="{{ campo.id_for_label }}"><b>{{ campo.label }}</b></label>
+              {{ campo }}
             </div>
-
-        {% for field in formulario.visible_fields %}
-        <div>
-            <label for='{{ field.id_for_label }}'><b>{{ field.label }}</b></label>
-            {{ field }}
-        </div>
-        {% endfor %}
+          {% endfor %}
 
         {% for error in formulario.errors %}
         <div>
@@ -38,7 +33,7 @@
             {% endfor %}
 
             <div>
-                <button type="Submit">Login</button>
+                <button type="Submit">Acessar</button>
             </div>
 
             <div>

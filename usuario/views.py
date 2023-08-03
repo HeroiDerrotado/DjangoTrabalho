@@ -13,6 +13,10 @@ from django.contrib.auth import authenticate, login as auth_login
 
 @login_required(login_url='usuario:loginpagina')
 def adiciona_views(request):
+    if not request.user.is_authenticated:
+        messages.error(request, 'Usuário não logado na página')
+        return redirect('usuario:loginpagina')
+    
     formulario = ImagemForm()
 
     if request.method == 'POST':
@@ -62,7 +66,7 @@ def outra_view(request):
     id_da_imagem = 1
     url_editar_imagem = reverse('editar_imagem', args=[id_da_imagem])
 
-    return render(request, "usuario/paginas/outra.hrml", context={"url_editar-imagem": url_editar_imagem})
+    return render(request, "usuario/paginas/outra.hrml", context={"url_editar_imagem": url_editar_imagem})
 
 
 def base_views(request):
@@ -73,6 +77,7 @@ def base_views(request):
 
 
 def login_views(request):
+      
     formulario = LoginForms()
 
     if request.method == "POST":
@@ -124,8 +129,8 @@ def cadastro_views(request):
             novo_usuario.save()
 
             # Create a Usuario object linked to the new User
-            novo_usuario_info = Usuario(user=novo_usuario, other_field1=formulario.cleaned_data['other_field1'], other_field2=formulario.cleaned_data['other_field2'])
-            novo_usuario_info.save()
+            novo_usuario = Usuario(user=novo_usuario, other_field1=formulario.cleaned_data['other_field1'], other_field2=formulario.cleaned_data['other_field2'])
+            novo_usuario.save()
 
             messages.success(request, "Cadastro realizado com sucesso")
             return redirect("usuario:loginpagina")

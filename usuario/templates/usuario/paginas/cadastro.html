@@ -14,12 +14,13 @@
   <section>
     <form action="{% url 'usuario:cadastropagina' %}" method="POST">
       {% csrf_token %}
+
       {% for campo in formulario.visible_fields %}
-        <div>
-          <label for="{{ campo.id_for_label }}"><b>{{ campo.label }}</b></label>
-          {{ campo }}
-        </div>
-      {% endfor %}
+            <div>
+              <label for="{{ campo.id_for_label }}"><b>{{ campo.label }}</b></label>
+              {{ campo }}
+            </div>
+          {% endfor %}
 
       {% for erro in formulario.errors %}
         <div>

@@ -28,7 +28,7 @@ class LoginForms(forms.Form):
         max_length=100,
         widget=forms.TextInput(
             attrs={
-                'placeholder': "digite seu nome"
+                'placeholder': "Digite seu nome"
             }
         )
     )

@@ -78,9 +78,9 @@
             {% csrf_token %}
             {% for campo in formulario.visible_fields %}
             <div>
-                <label for='{{ campo.id_for_label }}'><b>{{ campo.label }}</b></label>
+                <label for="{{ campo.id_for_label }}"><b>{{ campo.label }}</b></label>
                 {{ campo }}
-            </div>
+              </div>
             {% endfor %}
 
             <form action="{% url 'usuario:adicionar_imagem' %}" method="POST" enctype="multipart/form-data">
