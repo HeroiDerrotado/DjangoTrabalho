@@ -39,7 +39,7 @@ def apaga_views(request, id_url):
 
     return render(request, 'usuario/paginas/apaga.html', context={'id_url': id_url})
 
-
+@login_required(login_url='usuario:loginpagina')
 def edita_views(request, id_url):
     if not request.user.is_authenticated:
         messages.error(request, 'Usuário não logado na página')
@@ -128,8 +128,8 @@ def cadastro_views(request):
 
             novo_usuario.save()
 
-            # Create a Usuario object linked to the new User
-            novo_usuario = Usuario(user=novo_usuario, other_field1=formulario.cleaned_data['other_field1'], other_field2=formulario.cleaned_data['other_field2'])
+
+            novo_usuario = Usuario(user=novo_usuario)
             novo_usuario.save()
 
             messages.success(request, "Cadastro realizado com sucesso")

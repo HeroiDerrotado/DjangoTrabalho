@@ -8,8 +8,6 @@ class Usuario(models.Model):
         ("CONSOLE", "console")
     ]
 
-    other_field1 = models.CharField(max_length=100, default='USUARIO')
-    other_field2 = models.CharField(max_length=100, default='USUARIO')
     user = models.OneToOneField(User, on_delete=models.CASCADE, default=1, related_name='usuario_profile')
     nome = models.CharField(max_length=125, blank=False, null=False)
     legenda = models.CharField(max_length=125, blank=False, null=False)
