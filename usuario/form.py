@@ -1,11 +1,25 @@
 from django import forms
+from usuario.models import Imagem,Usuario
+from django.contrib.auth.models import User
 from usuario.models import Imagem
+
+
+
+class UsuarioForm(forms.ModelForm):
+    class Meta:
+        model = Usuario
+        fields = ('nome', 'legenda', 'categoria', 'descricao', 'foto', 'eh_publicada', 'data_fotografia')
+
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'password']
+
 
 
 class ImagemForm(forms.ModelForm):
     class Meta:
         model = Imagem
-        fields = ['titulo', 'imagem']
+        fields = ('titulo', 'imagem')
 
 class LoginForms(forms.Form):
     nome_login = forms.CharField(
@@ -54,6 +68,7 @@ class CadastroForms(forms.Form):
             }
         )
     )
+    
 
     senha_cadastro1 = forms.CharField(
         label='Senha',
@@ -76,6 +91,10 @@ class CadastroForms(forms.Form):
             }
         )
     )
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'password']
+
 
     def clean_nome_cadastro(self):
         nome = self.cleaned_data.get('nome_cadastro')
@@ -88,11 +107,12 @@ class CadastroForms(forms.Form):
             else:
                 return nome
 
-    def clean_senha(self):
-        senha1 = self.cleaned_data.get("senha1")
-        senha2 = self.cleaned_data.get("senha2")
+    def clean(self):
+        cleaned_data = super().clean()
+        senha1 = cleaned_data.get("senha1")
+        senha2 = cleaned_data.get("senha2")
 
-        if senha1 == senha2:
+        if senha1 != senha2:
             raise forms.ValidationError("As senhas não são iguais")
-        else:
-            return senha2
+
+        return cleaned_data

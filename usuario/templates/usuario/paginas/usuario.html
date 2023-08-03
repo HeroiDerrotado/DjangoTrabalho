@@ -14,13 +14,23 @@
     <section>
         <form action="{% url 'usuario:loginpagina' %}" method="POST">
             {% csrf_token %}
-            {% for campo in formulario.visible_fields %}
             <div>
-                <label for='{{ campo.id_for_label }}'><b>{{ campo.label }}</b></label>
-                {{ campo }}
-            </div>
-            {% endfor %}
+                <label for='{{ formulario.nome_login.id_for_label }}'><b>{{ formulario.nome_login.label }}</b></label>
 
+            </div>
+
+        {% for field in formulario.visible_fields %}
+        <div>
+            <label for='{{ field.id_for_label }}'><b>{{ field.label }}</b></label>
+            {{ field }}
+        </div>
+        {% endfor %}
+
+        {% for error in formulario.errors %}
+        <div>
+            <p>{{ error }}</p>
+        </div>
+        {% endfor %}
             {% for mensagem in messages %}
             <div>
                 <p>{{ mensagem }}</p>
