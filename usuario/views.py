@@ -5,6 +5,8 @@ from django.contrib.auth.models import User
 from django.contrib import auth
 from django.contrib import messages
 
+#NÃO CONSEGUIMOS CONECTAR PÁGINA DE CADASTRO COM O BANCO DE DADO; NÃO SALVA USUÁRIOS
+
 
 # Create your views here.
 
