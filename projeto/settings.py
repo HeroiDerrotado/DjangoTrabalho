@@ -37,12 +37,17 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    #meus app
+    # meus app
     'vidamarinha.apps.VidamarinhaConfig',
     'pesca.apps.PescaConfig',
     'especies.apps.EspeciesConfig',
     'usuario.apps.UsuarioConfig',
     'menu.apps.MenuConfig',
+
+]
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
 ]
 
 MIDDLEWARE = [
@@ -53,6 +58,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
 ]
 
 ROOT_URLCONF = 'projeto.urls'
@@ -61,9 +67,9 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            
+
             BASE_DIR / 'meus_templates'
-   
+
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -86,7 +92,11 @@ WSGI_APPLICATION = 'projeto.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': 'mydata',
+        'USER': 'root',
+        'PASSWORD': ':',
+        'HOST': 'localhost',
+        'PORT': '3306'
     }
 }
 
@@ -115,7 +125,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'pt-BR'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Sao_Paulo'
 
 USE_I18N = True
 
@@ -125,6 +135,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
+
 STATIC_URL = 'static/'
 
 
@@ -133,8 +144,16 @@ STATICFILES_DIRS = [
 ]
 STATIC_ROOT = BASE_DIR / 'static'
 
+MEDIA_ROOT = "os.path.join(BASE_DIR, 'media)"
+MEDIA_URL = '/media/'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'

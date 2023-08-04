@@ -1,7 +1,15 @@
 from django.db import models
 from datetime import datetime
 
+
 # Create your models here.
+
+from django import forms
+
+class Busca(models.Model):
+    buscando = forms.CharField(max_length=100, required=False)
+
+
 
 
 class Menu(models.Model):
@@ -18,3 +26,7 @@ class Menu(models.Model):
     foto = models.ImageField(upload_to='imagem/%Y/%m/%d/',blank=True)
     publicada = models.BooleanField(default=False)
     data = models.DateTimeField(default=datetime.now, blank=False)
+   
+    
+    def __str__(self):
+        return self.nome

@@ -1,54 +1,63 @@
+{% extends 'usuario/paginas/base.html' %}
 {% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
 
-<html>
-{% include 'usuario/parciais/usuario_head.html' %}
+{% static 'usuario/css/usuarioestilo.css' %}
 
+{% block usuario %}
 
 <body>
-
-
-    <h1>pagina login</h1>
+    <h1>Página de login</h1>
 
     <section>
-        <form action="{% url 'usuario:loginpagina' %}" method="POST">
+        <form action="{% url 'usuario:loginpagina' %}" method="POST"  enctype="multipart/form-data">
             {% csrf_token %}
             {% for campo in formulario.visible_fields %}
             <div>
-                <label for='{{ campo.id_for_label }}'><b>{{ campo.label }}</b></label>
-                {{ campo }}
+              <label for="{{ campo.id_for_label }}"><b>{{ campo.label }}</b></label>
+              {{ campo }}
             </div>
+          {% endfor %}
 
+        {% for error in formulario.errors %}
+        <div>
+            <p>{{ error }}</p>
+        </div>
+        {% endfor %}
             {% for mensagem in messages %}
             <div>
                 <p>{{ mensagem }}</p>
             </div>
             {% endfor %}
 
-
-            {% endfor %}
             <div>
-                <button type="Submit">Login</button>
+                <button type="Submit">Acessar</button>
             </div>
 
             <div>
-                <a href="{% url 'usuario:cadastropagina' %}">Realizar Cadastro</a>
+                <a href="{% url 'usuario:logout' %}">Sair da página</a>
             </div>
 
             <div>
-                <a href="{% url 'usuario:logout' %}">Sair da pagina</a>
+                <a href="{% url 'usuario:cadastropagina' %}">Página de cadastro</a>
             </div>
 
             <div>
                 <a href="{% url 'menuzin:menupagina' %}">Menu</a>
             </div>
 
+            <div>
+                <a href="{% url 'usuario:adicionar_imagem' %}">Adicionar imagem</a>
+                <br>
+                <a href="{% url 'usuario:apagar_imagem' 1 %}">Apagar imagem</a>
+                <br>
+                <a href="{% url 'usuario:editar_imagem' 1 %}">Editar imagem</a>
+            </div>
         </form>
     </section>
-
-
 </body>
 
 </html>
+{% endblock usuario %}

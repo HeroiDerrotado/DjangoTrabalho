@@ -1,53 +1,48 @@
+{% extends 'usuario/paginas/base.html' %}
 {% load static %}
 
-{% block conteudo %}
-<h1>Pagina de Login</h1>
-<section>
-  <form action="{% url 'usuario:cadastropagina' %}" method="POST">
-    {% csrf_token %}
-    <div>
-      <label for="nome_cadastro">Nome Completo</label>
-      <input type="text" name="nome_cadastro" placeholder="Digite seu nome" required>
-    </div>
-    <div>
-      <label for="email">email</label>
-      <input type="text" name="email" placeholder="Digite seu email" required>
-    </div>
-    <div>
-      <label for="senha1">Senha</label>
-      <input type="text" name="senha1" placeholder="Sua senha" required>
-    </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Cadastro</title>
+</head>
+<body>
 
-    {% for mensagem in messages %}
-    <div>
-      <p>{{ mensagem }}</p>
-    </div>
-    {% endfor %}
+  {% block conteudo %}
 
+  <h1>Pagina de Cadastro</h1>
+  <section>
+    <form action="{% url 'usuario:cadastropagina' %}" method="POST">
+      {% csrf_token %}
 
-    <div>
-      <label for="senha2">Confirmação de Senha </label>
-      <input type="text" name="senha2" placeholder="Confirme Sua senha" required>
-    </div>
+      {% for campo in formulario.visible_fields %}
+            <div>
+              <label for="{{ campo.id_for_label }}"><b>{{ campo.label }}</b></label>
+              {{ campo }}
+            </div>
+          {% endfor %}
 
-    {% for erro in campo.errors %}
-    <div>
-      {{ erro }}
-    </div>
-    {% endfor %}
+      {% for erro in formulario.errors %}
+        <div>
+          {{ erro }}
+        </div>
+      {% endfor %}
 
+      <div>
+        <button type="submit">Criar conta</button>
+      </div>
+      <div>
+        <a href="{% url 'menuzin:menupagina' %}">Menu</a>
+      </div>
 
-    <div>
-      <button type="submit">Criar conta</button>
-    </div>
-    <div>
-      <a href="{% url 'menuzin:menupagina' %}">Menu</a>
-    </div>
+      <div>
+        <a href="{% url 'usuario:loginpagina' %}">Login</a>
+      </div>
 
-  </form>
-</section>
+    </form>
+  </section>
 
+  {% endblock conteudo %}
 
-
-
-{% endblock conteudo %}
+</body>
+</html>

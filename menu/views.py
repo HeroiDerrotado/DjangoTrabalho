@@ -1,19 +1,27 @@
+
 from django.shortcuts import render
-from menu.models import Menu
+from usuario.form import ImagemForm
+from menu.models import Busca  
 
 # Create your views here.
 
+
+def base_views(request):
+    return render(request, 'menu/paginas/base.html')
+
+
 def menu_views(request):
-    return render(request,'menu/paginas/menu_body.html')
+    return render(request, 'menu/paginas/menu_body.html')
 
-def views_busca(request):
 
-    imagens = Menu.objects.all()
-    print(request)
 
-    if 'buscando' in request.GET:
-        nome = request.GET['buscando']
-        if nome:
-            imagens = imagens.filter(nome__icontains=nome)
-
-    return render(request, 'menu/paginas/busca.html', context ={'imagens' : imagens})
+def busca_imagem(request):
+    if request.method == 'POST':
+        formulario = ImagemForm(request.POST)
+        if formulario.is_valid():
+            termo_busca = formulario.cleaned_data['termo_busca']
+            imagens = Busca.objects.filter(titulo__icontains=termo_busca)
+            return render(request, 'resultado_busca.html', {'imagens': imagens, 'termo_busca': termo_busca})
+    else:
+        formulario = ImagemForm()
+    return render(request, 'menu/paginas/busca.html', {'formulario': formulario})
