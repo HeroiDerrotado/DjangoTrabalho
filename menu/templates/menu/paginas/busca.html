@@ -1,12 +1,16 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+{% include 'especies/parciais/especies_head.html' %}
+
 <body>
-    <div class="row">
-        <div class="col-sm-6">
-            <form method="post" action="{% url 'menuzin:busca_imagem' %}">
-                {% csrf_token %}
-                {{ formulario }}
-                <input type="text" name="termo_busca" placeholder="Digite sua busca aqui">
-                <button type="submit">Buscar</button>
-            </form>
-        </div>
+    <div>
+        <form action="{% url 'peixes:especiespagina' %}"></form>
+        <input type="text" name="buscando" placeholder="O que deseja encontrar?">
+        <button type="submit">Buscar</button>
     </div>
 </body>
+
+</html>

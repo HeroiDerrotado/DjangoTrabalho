@@ -8,6 +8,8 @@ from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from django.contrib.auth import authenticate, login as auth_login
 
+#NÃO CONSEGUIMOS CONECTAR PÁGINA DE CADASTRO COM O BANCO DE DADO; NÃO SALVA USUÁRIOS
+
 
 
 

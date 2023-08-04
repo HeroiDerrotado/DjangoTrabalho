@@ -1,6 +1,4 @@
 {% load static %}
-
-
 <!DOCTYPE html>
 <html lang="en">
 {% include 'menu/parciais/index_head.html' %}
@@ -32,21 +30,12 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'usuario:cadastropagina' %}">Cadastro</a>
                         </li>
-                        <li>
-                            <a class="nav-link" href="{% url 'usuario:adicionar_imagem' %}">Adicionar Imagem</a>
-                        </li>
-                        <li>
-                            <a href="{% url 'usuario:apagar_imagem' 1 %}">Apagar imagem</a>
-                        </li>
-                        <li>
-                            <a href="{% url 'usuario:editar_imagem' 1 %}">Editar imagem</a>
-                        </li>
-                        
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">
                                 Categoria
                             </a>
+
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="{% url 'peixes:especiespagina' %}">Fundo do
                                         Mar</a>
@@ -59,8 +48,8 @@
                                     <hr class="dropdown-divider">
                                 </li>
                                 <li><a class="dropdown-item" href="{% url 'pescaria:pescariapagina' %}">Aquário</a>
-                                {% comment %} </li>
-                                <li><a class="dropdown-item" href="{% url 'admin:index' %}">Admin</a></li> {% endcomment %}
+                                </li>
+                                <!-- <li><a class="dropdown-item" href="{% url 'admin:index' %}">Admin</a></li> -->
                             </ul>
                         </li>
                     </ul>
